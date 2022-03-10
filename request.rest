@@ -1,0 +1,42 @@
+### register a user
+POST http://localhost:4000/register 
+Content-Type: application/json 
+
+{
+    "username":"John doe",
+    "password": "1234"
+}
+
+### login
+POST http://localhost:4000/login 
+Content-Type: application/json 
+
+{   
+    "username":"John doe",
+    "password": "1234"
+}
+
+### validate token
+POST http://localhost:4000/validateToken
+Content-Type : application/json 
+
+{
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjI5MDA0NTcxMjdmNDZhMTg5Nzc3ODIiLCJ1c2VybmFtZSI6IkpvaG4gZG9lIiwiaWF0IjoxNjQ2ODU2MzI5LCJleHAiOjE2NDY4NTYzNTl9.L-KUVk-pzy2phYNXfRdehNYlCaiyacWJ7s_OR6wJcfI"
+}
+
+
+### get new token
+POST http://localhost:4000/refreshToken
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjI5MDA0NTcxMjdmNDZhMTg5Nzc3ODIiLCJ1c2VybmFtZSI6IkpvaG4gZG9lIiwiaWF0IjoxNjQ2ODU3MTA4LCJleHAiOjE2NDc0NjE5MDh9.6gH79o5fo1ecf-GhCFDRcbrHRFUPRv9O00aSXuHomG8"
+} 
+### logout
+POST http://localhost:4000/logout
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjI5MDA0NTcxMjdmNDZhMTg5Nzc3ODIiLCJ1c2VybmFtZSI6IkpvaG4gZG9lIiwiaWF0IjoxNjQ2ODU3MTIwLCJleHAiOjE2NDY4NTcxNTB9.g0hib2yytBbG9iKjwail5Z-RJua5QUkUvCDUFp0iMjg
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjI5MDA0NTcxMjdmNDZhMTg5Nzc3ODIiLCJ1c2VybmFtZSI6IkpvaG4gZG9lIiwiaWF0IjoxNjQ2ODU3MTIwLCJleHAiOjE2NDY4NTcxNTB9.g0hib2yytBbG9iKjwail5Z-RJua5QUkUvCDUFp0iMjg"
+}
