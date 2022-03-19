@@ -1,26 +1,25 @@
 require("dotenv").config()
-const port = process.env.PORT || 4000
-const express = require("express")
-const app = express()
-const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken")
-const mongoose = require("mongoose")
-app.use(express.json())
 const User = require("./User.js")
-const url = "mongodb://localhost:27017/usersDB"
-const cors = require("cors")
 const RefreshToken = require("./refreshToken.js")
 const validateRequest = require("./validateRequest.js")
+
+const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
+const cors = require("cors")
+const express = require("express")
+//APP CONFIG
+const port = process.env.PORT || 4000
+const app = express()
+app.use(express.json())
 app.use(cors({
-    allowedHeadersL:"application/json",
-    origin:"*"
+    allowedHeaders:"application/json",
+    origin: process.env.FRONTEND_URL
 }))
-mongoose.connect(url)
 
-
+//ROUTING
 app.post("/register", ( req , res ) => {
     const { username , password } = req.body
-	if (!username || !password  ) return res.sendStatus(206)
+	if (!username || !password  ) return res.sendStatus(400)
 	User.findOne({username:username} , ( err , user ) => {
 		if ( err ) return res.sendStatus(500)
 		if ( user ) return res.sendStatus(409)
@@ -41,7 +40,7 @@ app.post("/register", ( req , res ) => {
 
 app.post("/login", ( req , res ) => {
     const { username , password } = req.body
-    if ( !username || !password ) return res.send(401)
+    if ( !username || !password ) return res.send(400)
 	User.findOne( {username:username} , (err, user) => {
 		if ( !user ) return res.sendStatus(404)
         if ( err ) return res.send(500)
